@@ -1,13 +1,7 @@
 # 🔢 Black–Cyan Scientific Calculator ⚡
 
-<p<img width="578" height="795" alt="Screenshot 2026-01-05 025356" src="https://github.com/user-attachments/assets/bd12b6c6-0527-464d-b6fa-5ea044472dc7" />
- align="center">
-  
-</p>
 
-<p align="center">
-  <b>A modern, neon-style scientific calculator with Black & Cyan ambient glow</b>
-</p>
+
 
 <p align="center">
   ✨ HTML • CSS • JavaScript ✨
@@ -24,6 +18,7 @@
 - 📱 **Fully responsive**
 
 > Designed to feel like a futuristic aqua–neon device.
+<img width="578" height="795" alt="Screenshot 2026-01-05 025356" src="https://github.com/user-attachments/assets/bd12b6c6-0527-464d-b6fa-5ea044472dc7" />
 
 ---
 
