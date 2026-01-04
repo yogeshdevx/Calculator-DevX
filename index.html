@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Calculator</title>
+<title>Black Cyan Scientific Calculator</title>
 
 <style>
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    
+    font-family: "Segoe UI", sans-serif;
 }
 
 body {
@@ -18,79 +17,108 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(145deg, #07ecec, #132323);
-    padding: 10px;
-  
-   
-    
-
+    background:
+        radial-gradient(circle at top,
+        #06b6d4 0%,
+        #020617 45%,
+        #000000 100%);
 }
 
+/* Calculator Card */
 .calculator {
-    background: #111;
-    padding: 16px;
-    border-radius: 20px;
     width: 100%;
-    max-width: 380px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    max-width: 360px;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow:
+        0 0 30px rgba(6, 182, 212, 0.45),
+        inset 0 0 18px rgba(6, 182, 212, 0.18);
 }
 
-.display {
+/* Display */
+#display {
     width: 100%;
-    height: clamp(55px, 15vw, 70px);
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: clamp(22px, 6vw, 32px);
+    height: 65px;
+    font-size: 1.6rem;
+    padding: 12px;
+    margin-bottom: 18px;
     text-align: right;
-    border-radius: 14px;
+    border-radius: 12px;
     border: none;
-    background: #222;
-    color: white;
+    outline: none;
+    background: #020617;
+    color: #67e8f9;
+    box-shadow: inset 0 0 12px rgba(6, 182, 212, 0.6);
 }
 
+/* Buttons Grid */
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(8px, 2vw, 12px);
+    gap: 12px;
 }
 
+/* Button Base */
 button {
-    height: clamp(48px, 14vw, 65px);
-    font-size: clamp(16px, 4.5vw, 20px);
+    padding: 16px;
+    font-size: 1rem;
+    border-radius: 12px;
     border: none;
-    border-radius: 14px;
     cursor: pointer;
-    background: #333;
-    color: white;
-    transition: 0.15s;
+    color: #e5e7eb;
+    background: linear-gradient(145deg, #020617, #000000);
+    box-shadow:
+        0 0 8px rgba(6, 182, 212, 0.35),
+        inset 0 0 6px rgba(6, 182, 212, 0.2);
+    transition: all 0.2s ease;
 }
 
-button:active {
-    transform: scale(0.95);
+button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 18px rgba(6, 182, 212, 0.8);
 }
 
+/* Function Buttons (Cyan) */
+.function {
+    color: #22d3ee;
+    font-weight: 600;
+}
+
+/* Operator Buttons */
 .operator {
-    background: #104b4b;
+    color: #67e8f9;
 }
 
+/* Equal Button */
 .equal {
-    grid-row: span 2;
-    background: #08d5c4;
-}
-
-.zero {
     grid-column: span 2;
+    background: linear-gradient(145deg, #06b6d4, #0891b2);
+    color: #020617;
+    font-weight: bold;
 }
 
-.control {
-    background: #0e8f88;
+/* Clear Button */
+.clear {
+    background: linear-gradient(145deg, #7f1d1d, #dc2626);
+    color: #fff;
 }
 
-/* Extra small phones */
-@media (max-width: 360px) {
+/* Responsive */
+@media (max-width: 480px) {
     .calculator {
-        padding: 12px;
-        border-radius: 16px;
+        margin: 15px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+
+    #display {
+        height: 60px;
+        font-size: 1.4rem;
     }
 }
 </style>
@@ -99,31 +127,42 @@ button:active {
 <body>
 
 <div class="calculator">
-    <input type="text" id="display" class="display" value="0" disabled>
+    <input type="text" id="display" readonly>
 
     <div class="buttons">
-        <button class="control" onclick="allClear()">AC</button>
-        <button class="control" onclick="erase()">⌫</button>
-        <button class="operator" onclick="append('%')">%</button>
-        <button class="operator" onclick="append('÷')">÷</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">DEL</button>
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+
+        <button class="function" onclick="append('Math.sin(')">sin</button>
+        <button class="function" onclick="append('Math.cos(')">cos</button>
+        <button class="function" onclick="append('Math.tan(')">tan</button>
+        <button class="operator" onclick="append('/')">÷</button>
+
+        <button class="function" onclick="append('Math.log10(')">log</button>
+        <button class="function" onclick="append('Math.log(')">ln</button>
+        <button class="function" onclick="append('Math.sqrt(')">√</button>
+        <button class="operator" onclick="append('*')">×</button>
 
         <button onclick="append('7')">7</button>
         <button onclick="append('8')">8</button>
         <button onclick="append('9')">9</button>
-        <button class="operator" onclick="append('×')">×</button>
+        <button class="operator" onclick="append('-')">−</button>
 
         <button onclick="append('4')">4</button>
         <button onclick="append('5')">5</button>
         <button onclick="append('6')">6</button>
-        <button class="operator" onclick="append('−')">−</button>
+        <button class="operator" onclick="append('+')">+</button>
 
         <button onclick="append('1')">1</button>
         <button onclick="append('2')">2</button>
         <button onclick="append('3')">3</button>
-        <button class="equal" onclick="calculate()">=</button>
+        <button class="function" onclick="append('Math.PI')">π</button>
 
-        <button class="zero" onclick="append('0')">0</button>
+        <button onclick="append('0')">0</button>
         <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
     </div>
 </div>
 
@@ -131,31 +170,20 @@ button:active {
 const display = document.getElementById("display");
 
 function append(value) {
-    if (display.value === "0" || display.value === "Error") {
-        display.value = value;
-    } else {
-        display.value += value;
-    }
+    display.value += value;
 }
 
-function allClear() {
-    display.value = "0";
+function clearDisplay() {
+    display.value = "";
 }
 
-function erase() {
-    display.value = display.value.length > 1
-        ? display.value.slice(0, -1)
-        : "0";
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
 }
 
 function calculate() {
     try {
-        let expression = display.value
-            .replace(/×/g, '*')
-            .replace(/÷/g, '/')
-            .replace(/−/g, '-');
-
-        display.value = eval(expression);
+        display.value = eval(display.value);
     } catch {
         display.value = "Error";
     }
